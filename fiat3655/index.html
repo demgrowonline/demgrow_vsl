@@ -309,7 +309,9 @@
             youtubeFrame.style.display = 'block';
 
             // Inject YouTube Iframe with Autoplay
-            youtubeFrame.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/1IVnrHEratk?autoplay=1&rel=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 16px;"></iframe>`;
+            // Inject YouTube Iframe with Autoplay and standard parameters
+            // Inject YouTube Iframe with Autoplay, No-Cookie domain, and Referrer Policy to fix Error 153
+            youtubeFrame.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/1IVnrHEratk?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 16px;"></iframe>`;
         });
     </script>
 </body>
