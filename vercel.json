@@ -1,4 +1,14 @@
 {
+    "rewrites": [
+        {
+            "source": "/fiat3655",
+            "destination": "/fiat3655/index.html"
+        },
+        {
+            "source": "/fiat3655/",
+            "destination": "/fiat3655/index.html"
+        }
+    ],
     "cleanUrls": true,
-    "trailingSlash": true
+    "trailingSlash": false
 }
