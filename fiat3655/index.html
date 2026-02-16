@@ -295,13 +295,19 @@
     </div>
 
     <script>
-        const video = document.getElementById('vslVideo');
+        const container = document.getElementById('videoContainer');
         const overlay = document.getElementById('unmuteOverlay');
+        const placeholder = document.getElementById('videoPlaceholder');
+        const youtubeFrame = document.getElementById('youtubeFrame');
 
         overlay.addEventListener('click', () => {
-            video.muted = false;
-            video.play();
+            // Hide overlay and placeholder
             overlay.classList.add('hidden');
+            placeholder.style.display = 'none';
+            youtubeFrame.style.display = 'block';
+
+            // Inject YouTube Iframe with Autoplay
+            youtubeFrame.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/1IVnrHEratk?autoplay=1&rel=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 16px;"></iframe>';
         });
     </script>
 </body>
