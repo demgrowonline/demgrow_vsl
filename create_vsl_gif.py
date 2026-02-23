@@ -58,7 +58,17 @@ def create_vsl_gif(image_folder, output_path, duration=800):
     )
     print(f"GIF created at {output_path}")
 
+import sys
+
 if __name__ == "__main__":
-    asset_dir = r"c:\Users\MOAZZAM\coding\ai-automation-agentic-ide\agency_websites\demgrow_vsl\assets"
-    output = os.path.join(asset_dir, "preview.gif")
+    if len(sys.argv) > 1:
+        asset_dir = sys.argv[1]
+    else:
+        asset_dir = r"c:\Users\MOAZZAM\coding\ai-automation-agentic-ide\agency_websites\demgrow_vsl\assets"
+        
+    if len(sys.argv) > 2:
+        output = sys.argv[2]
+    else:
+        output = os.path.join(asset_dir, "preview.gif")
+        
     create_vsl_gif(asset_dir, output)

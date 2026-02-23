@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Roadmap | Demgrow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --accent-color: #f7b731;
+            /* Gold/Yellow */
+            --text-color: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .header {
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .header p {
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 10px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            animation: scaleUp 0.8s ease-out forwards;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 16px;
+            display: block;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+
+        /* Unmute Overlay */
+        .unmute-overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 16px;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .glossy-play-btn {
+            width: clamp(80px, 15vw, 110px);
+            height: clamp(80px, 15vw, 110px);
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.4);
+            position: relative;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .glossy-play-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .glossy-play-btn::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 25px solid white;
+            margin-left: 8px;
+        }
+
+        .unmute-text {
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .footer {
+            margin-top: 50px;
+            animation: fadeInUp 1s ease-out 0.5s both;
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #000;
+            padding: 20px 45px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(247, 183, 49, 0.3);
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(247, 183, 49, 0.5);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Subtle ambient light */
+        .ambient-light {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            background: radial-gradient(circle, rgba(247, 183, 49, 0.08) 0%, rgba(5, 5, 5, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ambient-light"></div>
+
+    <div class="header">
+        <h1>The Hero Roadmap</h1>
+        <p>A strategic breakdown of the automation infrastructure we're deploying for your Hero ecosystem.</p>
+    </div>
+
+    <div class="video-container" id="videoContainer">
+        <div id="unmuteOverlay" class="unmute-overlay">
+            <div class="glossy-play-btn"></div>
+            <div class="unmute-text">Click to Play with Sound</div>
+        </div>
+        <!-- YouTube Thumbnail as Placeholder; using HQ for reliability -->
+        <img id="videoPlaceholder" src="https://img.youtube.com/vi/1IVnrHEratk/hqdefault.jpg" alt="Video Thumbnail"
+            style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+
+        <!-- Iframe container (empty initially) -->
+        <div id="youtubeFrame" style="width: 100%; aspect-ratio: 16/9; display: none;"></div>
+    </div>
+
+    <style>
+        .founder-message {
+            margin-top: 60px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 800px;
+            width: 100%;
+            text-align: left;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .founder-message p {
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 25px;
+        }
+
+        .founder-message strong {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .founder-message .signature {
+            margin-top: 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+    </style>
+
+    <div class="founder-message">
+        <p>Having partnered with <strong>over 100 businesses</strong> across the Restaurant, Healthcare, and Real Estate
+            sectors, I can guarantee you one thing: this infrastructure moves the needle <strong>far beyond
+                expectations.</strong></p>
+
+        <p>We don’t just generate leads; we build the <strong>authenticity and absolute trust</strong> that turns
+            prospects into lifetime customers—the foundation of everything we do.</p>
+
+        <p>This roadmap is only the beginning of our journey. With our <strong>Proven Systems</strong> as your
+            foundation, we’ll take your business to a world where growth is predictable, operations are seamless, and
+            your work is simply more fun.</p>
+
+        <p>Let’s build your future, together.</p>
+
+        <div class="signature">— DemGrow</div>
+    </div>
+
+    <div class="footer">
+        <a href="https://cal.com/demgrow-kf1eni/15min?layout=mobile&overlayCalendar=true" class="btn">Book Strategy
+            Session</a>
+    </div>
+
+    <script>
+        const container = document.getElementById('videoContainer');
+        const overlay = document.getElementById('unmuteOverlay');
+        const placeholder = document.getElementById('videoPlaceholder');
+        const youtubeFrame = document.getElementById('youtubeFrame');
+
+        overlay.addEventListener('click', () => {
+            // Hide overlay and placeholder
+            overlay.classList.add('hidden');
+            placeholder.style.display = 'none';
+            youtubeFrame.style.display = 'block';
+
+            // Inject YouTube Iframe with Autoplay
+            // Inject YouTube Iframe with Autoplay and standard parameters
+            // Inject YouTube Iframe with Autoplay, No-Cookie domain, and Referrer Policy to fix Error 153
+            youtubeFrame.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/1IVnrHEratk?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 16px;"></iframe>`;
+        });
+    </script>
+</body>
+
+</html>
